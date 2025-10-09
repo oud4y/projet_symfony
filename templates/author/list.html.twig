@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List authors{% endblock %}
+
+{% block body %}
+    <h1 style="text-align: center;">List authors</h1>
+
+    <table border="1" cellspacing="0" cellpadding="5" style="margin: 0 auto;">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+        </tr>
+        {% for author in authors %}
+            <tr>
+                <td>{{ author.username }}</td>
+                <td>{{ author.email }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
