@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Book Details{% endblock %}
+
+{% block body %}
+<h1 style="text-align: center;">Book</h1>
+
+<p style="text-align: center;">
+    <strong>Title of Book:</strong> {{ book.title }}<br>
+    <strong>Publication date:</strong>
+    {{ book.publicationDate ? book.publicationDate|date('F j, Y H:i') : '---' }}<br>
+    <strong>Author:</strong> {{ book.author.username }}
+</p>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a href="{{ path('book_published_list') }}">Back to list</a>
+</div>
+{% endblock %}

@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 class ServiceController extends AbstractController
 {
@@ -19,6 +19,6 @@ class ServiceController extends AbstractController
     #[Route('/service/go-to-index', name: 'service_go_to_index')]
     public function goToIndex(): Response
     {
-        return $this->redirectToRoute('home_index');
+        return $this->redirectToRoute('app_first');
     }
 }

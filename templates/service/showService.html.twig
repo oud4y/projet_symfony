@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Service: {{ name }}{% endblock %}
+
+{% block body %}
+  <h1>Service Details</h1>
+  <p>You requested service: <strong>{{ name }}</strong></p>
+  <p><a href="{{ path('app_first') }}">Back to home</a></p>
+{% endblock %}

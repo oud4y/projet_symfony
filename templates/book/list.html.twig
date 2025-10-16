@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}List of Books{% endblock %}
+
+{% block body %}
+<h1 style="text-align: center;">List of Books</h1>
+
+{% if books is empty %}
+    <p style="text-align: center;">No Books found</p>
+{% else %}
+    <table border="1" cellspacing="0" cellpadding="5" style="margin: 0 auto;">
+        <tr>
+            <th>Title</th>
+            <th>Publication date</th>
+            <th>Published</th>
+            <th>Category</th>
+            <th>Author</th>
+            <th>Actions</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td>{{ book.title }}</td>
+                <td>{{ book.publicationDate ? book.publicationDate|date('F j, Y H:i') : '---' }}</td>
+                <td>{{ book.published ? '1' : '0' }}</td>
+                <td>{{ book.category }}</td>
+                <td>{{ book.author.username }}</td>
+
+                <td style="white-space: nowrap;">
+                    <a href="{{ path('book_edit', {id: book.id}) }}">edit</a>
+
+                    <form method="post"
+                        action="{{ path('book_delete', {id: book.id}) }}"
+                        style="display:inline"
+                        onsubmit="return confirm('Are you sure you want to delete this book?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ book.id) }}">
+                        <button type="submit" style="background:none;border:none;color:#00f;cursor:pointer;padding:0;">
+                            delete
+                        </button>
+                    </form>
+
+                    <a href="{{ path('book_show', {id: book.id}) }}">show</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <p style="text-align: center; margin-top: 10px;">
+        Number of published books : {{ publishedCount }}<br>
+        Number of unpublished books : {{ unpublishedCount }}
+    </p>
+{% endif %}
+
+<div style="text-align: center; margin-top: 15px;">
+    <a href="{{ path('book_add') }}">
+        <button>Create new</button>
+    </a>
+</div>
+{% endblock %}
